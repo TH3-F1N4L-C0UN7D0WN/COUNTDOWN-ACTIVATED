@@ -27,10 +27,60 @@
             padding: 20px;
         }
         
+        .password-screen {
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .password-screen h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .password-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        
+        .password-btn:hover {
+            background: #555;
+        }
+        
+        .error-msg {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
         .container {
+            display: none;
             text-align: center;
             max-width: 800px;
             width: 100%;
+        }
+        
+        .container.unlocked {
+            display: block;
         }
         
         h1 {
@@ -51,17 +101,341 @@
             color: #ccc;
         }
         
-        .visitor-counter {
-            font-size: 1.1em;
+        .email-section {
             margin-top: 40px;
-            padding: 15px;
-            border-top: 1px solid #333;
+            padding: 20px;
+            border: 1px solid #333;
+            background: #0a0a0a;
+            border-radius: 5px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .email-section h4 {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        .email-btn {
+            padding: 8px 16px;
+            background: #222;
+            border: 1px solid #444;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        
+        .email-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+        
+        .email-status {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .invite-section {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #333;
+            background: #0a0a0a;
+            border-radius: 5px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+        }
+        
+        .invite-section.show {
+            display: block;
+        }
+        
+        .invite-section h4 {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .invite-form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .invite-form-group label {
+            display: block;
+            font-size: 0.8em;
             color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .invite-email-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .invite-message-textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.85em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            resize: vertical;
+            min-height: 120px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .invite-btn {
+            padding: 10px 20px;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+        
+        .invite-btn:hover {
+            background: #555;
+        }
+        
+        .invite-status {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .invite-unlock-section {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #333;
+            background: #0a0a0a;
+            border-radius: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .invite-unlock-section h4 {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+        
+        .invite-unlock-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        .invite-unlock-btn {
+            width: 100%;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #444;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        
+        .invite-unlock-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+        
+        .comments-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .comments-section h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        
+        .comment-textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            resize: vertical;
+            min-height: 80px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .comment-submit {
+            padding: 10px 20px;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+        
+        .comment-submit:hover {
+            background: #555;
+        }
+        
+        .comments-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .comment {
+            background: #111;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+        
+        .comment-time {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .comment-text {
+            font-size: 1em;
+            line-height: 1.5;
+            color: #ddd;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        .reply-btn {
+            padding: 4px 10px;
+            background: #222;
+            border: 1px solid #444;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: 0.3s;
+        }
+        
+        .reply-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+        
+        .reply-form {
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 2px solid #333;
+        }
+        
+        .reply-textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9em;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            resize: vertical;
+            min-height: 60px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 8px;
+        }
+        
+        .reply-submit {
+            padding: 6px 12px;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        
+        .reply-submit:hover {
+            background: #333;
+        }
+        
+        .replies {
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 2px solid #333;
+        }
+        
+        .reply {
+            background: #0a0a0a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #222;
+            font-size: 0.9em;
+        }
+        
+        .reply-time {
+            font-size: 0.7em;
+            color: #555;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Password Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <h2>COUNTDOWN-ACTIVATED</h2>
+        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+        <button class="password-btn" onclick="checkPassword()">UNLOCK</button>
+        <div class="error-msg" id="errorMsg"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container" id="mainContent">
         <h1>COUNTDOWN-ACTIVATED</h1>
         
         <div class="message">
@@ -72,17 +446,326 @@
             <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script><a data-type="countdown" data-id="10544750" class="tickcounter" style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;" title="COUNTING MY DAYS" href="//www.tickcounter.com/">COUNTING MY DAYS</a>
         </div>
         
-        <div class="visitor-counter">
-            👥 Visitors: <span id="count">0</span>
+        <!-- Email Opt-In Section -->
+        <div class="email-section">
+            <h4>💌 Get notifications (optional)</h4>
+            <input type="email" id="visitorEmail" class="email-input" placeholder="Your email address">
+            <button class="email-btn" onclick="saveVisitorEmail()">SAVE</button>
+            <div class="email-status" id="emailStatus"></div>
+        </div>
+        
+        <!-- Invite Unlock Section -->
+        <div class="invite-unlock-section">
+            <h4>📨 Send Invite</h4>
+            <input type="password" id="invitePassword" class="invite-unlock-input" placeholder="Enter invite password">
+            <button class="invite-unlock-btn" onclick="unlockInviteSystem()">UNLOCK</button>
+        </div>
+        
+        <!-- Invite System (Hidden by default) -->
+        <div class="invite-section" id="inviteSection">
+            <h4>📨 Send Invite</h4>
+            
+            <div class="invite-form-group">
+                <label>Email Address</label>
+                <input type="email" id="inviteEmail" class="invite-email-input" placeholder="recipient@email.com">
+            </div>
+            
+            <div class="invite-form-group">
+                <label>Message (customize if you want)</label>
+                <textarea id="inviteMessage" class="invite-message-textarea">Check out this countdown timer and let me know what you think.
+
+Password: Barba
+
+Click the link below to access it:</textarea>
+            </div>
+            
+            <button class="invite-btn" onclick="sendInvite()">SEND INVITE</button>
+            <div class="invite-status" id="inviteStatus"></div>
+        </div>
+        
+        <!-- Comments Section (Private Chat) -->
+        <div class="comments-section">
+            <h3>Message</h3>
+            
+            <div class="comment-form">
+                <textarea class="comment-textarea" id="newComment" placeholder="Type your message..."></textarea>
+                <button class="comment-submit" onclick="submitComment()">SEND</button>
+            </div>
+            
+            <div class="comments-list" id="commentsList"></div>
         </div>
     </div>
     
     <script>
-        // Visitor Counter
-        let visitors = localStorage.getItem('visitors') || 0;
-        visitors = parseInt(visitors) + 1;
-        localStorage.setItem('visitors', visitors);
-        document.getElementById('count').textContent = visitors;
+        // Main password
+        const mainPassword = "Barba";
+        const invitePassword = "cheech1";
+        const ownerEmail = "28rivals@gmail.com";
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === mainPassword) {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.add('unlocked');
+                loadVisitorEmail();
+                loadComments();
+                errorMsg.textContent = '';
+            } else {
+                errorMsg.textContent = 'Incorrect password';
+            }
+        }
+        
+        function unlockInviteSystem() {
+            const input = document.getElementById('invitePassword').value;
+            
+            if (input === invitePassword) {
+                document.getElementById('inviteSection').classList.add('show');
+                document.getElementById('invitePassword').value = '';
+            } else {
+                alert('Incorrect password');
+            }
+        }
+        
+        function sendInvite() {
+            const email = document.getElementById('inviteEmail').value.trim();
+            const message = document.getElementById('inviteMessage').value.trim();
+            const status = document.getElementById('inviteStatus');
+            
+            if (!email) {
+                status.textContent = 'Please enter an email';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                status.textContent = 'Invalid email address';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+            
+            if (!message) {
+                status.textContent = 'Please write a message';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+            
+            // Get current page URL
+            const pageUrl = window.location.href;
+            const fullMessage = `${message}\n\n${pageUrl}`;
+            
+            // Send via Formspree
+            fetch('https://formspree.io/f/xyzpqrst', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    message: fullMessage,
+                    _subject: 'You\'re invited to COUNTING MY DAYS'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    status.textContent = '✓ Invite sent!';
+                    status.style.color = '#66bb6a';
+                    document.getElementById('inviteEmail').value = '';
+                    document.getElementById('inviteMessage').value = 'Check out this countdown timer and let me know what you think.\n\nPassword: Barba\n\nClick the link below to access it:';
+                } else {
+                    status.textContent = 'Error sending invite';
+                    status.style.color = '#ff6b6b';
+                }
+            })
+            .catch(e => {
+                status.textContent = 'Error sending invite';
+                status.style.color = '#ff6b6b';
+            });
+        }
+        
+        function saveVisitorEmail() {
+            const email = document.getElementById('visitorEmail').value.trim();
+            const status = document.getElementById('emailStatus');
+            
+            if (!email) {
+                status.textContent = 'Please enter an email';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                status.textContent = 'Invalid email address';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+            
+            localStorage.setItem('visitorEmail', email);
+            status.textContent = '✓ Email saved - you\'ll get notifications!';
+            status.style.color = '#66bb6a';
+        }
+        
+        function loadVisitorEmail() {
+            const saved = localStorage.getItem('visitorEmail');
+            if (saved) {
+                document.getElementById('visitorEmail').value = saved;
+                document.getElementById('emailStatus').textContent = '✓ Email notifications enabled';
+                document.getElementById('emailStatus').style.color = '#66bb6a';
+            }
+        }
+        
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        
+        // Comments System (Chat)
+        function submitComment() {
+            const textarea = document.getElementById('newComment');
+            const text = textarea.value.trim();
+            
+            if (!text) {
+                alert('Please write something');
+                return;
+            }
+            
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            const newComment = {
+                id: Date.now(),
+                text: text,
+                timestamp: new Date().toISOString(),
+                replies: []
+            };
+            
+            comments.push(newComment);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            
+            // Send email notifications
+            sendEmailNotifications(text, false);
+            
+            textarea.value = '';
+            loadComments();
+        }
+        
+        function submitReply(commentId) {
+            const textarea = document.getElementById('reply-' + commentId);
+            const text = textarea.value.trim();
+            
+            if (!text) {
+                alert('Please write something');
+                return;
+            }
+            
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            const comment = comments.find(c => c.id === commentId);
+            
+            if (comment) {
+                comment.replies.push({
+                    id: Date.now(),
+                    text: text,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('comments', JSON.stringify(comments));
+                
+                // Send email notifications
+                sendEmailNotifications(text, true);
+                
+                loadComments();
+            }
+        }
+        
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            const list = document.getElementById('commentsList');
+            
+            if (comments.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #666; margin-top: 20px;">No messages yet...</p>';
+                return;
+            }
+            
+            list.innerHTML = comments.map(comment => `
+                <div class="comment">
+                    <div class="comment-time">${formatTime(comment.timestamp)}</div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    <button class="reply-btn" onclick="toggleReplyForm(${comment.id})">Reply</button>
+                    
+                    <div class="reply-form" id="replyForm-${comment.id}" style="display: none;">
+                        <textarea class="reply-textarea" id="reply-${comment.id}" placeholder="Reply..."></textarea>
+                        <button class="reply-submit" onclick="submitReply(${comment.id})">SEND</button>
+                    </div>
+                    
+                    ${comment.replies && comment.replies.length > 0 ? `
+                        <div class="replies">
+                            ${comment.replies.map(reply => `
+                                <div class="reply">
+                                    <div class="reply-time">${formatTime(reply.timestamp)}</div>
+                                    <div>${escapeHtml(reply.text)}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            
+            // Auto-scroll to bottom
+            list.scrollTop = list.scrollHeight;
+        }
+        
+        function toggleReplyForm(commentId) {
+            const form = document.getElementById('replyForm-' + commentId);
+            if (form) {
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+        
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function sendEmailNotifications(text, isReply) {
+            // Notify owner
+            sendEmail(ownerEmail, text, isReply);
+            
+            // Notify visitor if they saved their email
+            const visitorEmail = localStorage.getItem('visitorEmail');
+            if (visitorEmail) {
+                sendEmail(visitorEmail, text, isReply);
+            }
+        }
+        
+        function sendEmail(email, text, isReply) {
+            fetch('https://formspree.io/f/xyzpqrst', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    message: `New ${isReply ? 'reply' : 'message'} on COUNTING MY DAYS:\n\n${text}`,
+                    _subject: `New ${isReply ? 'Reply' : 'Message'} - COUNTING MY DAYS`
+                })
+            }).catch(e => console.log('Email service'));
+        }
+        
+        // Allow Enter key on password input
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Auto-refresh comments every 1 second
+        setInterval(() => {
+            if (document.getElementById('mainContent').classList.contains('unlocked')) {
+                loadComments();
+            }
+        }, 1000);
     </script>
 </body>
 </html>
