@@ -46,6 +46,14 @@
             margin: 30px 0;
             color: #ccc;
         }
+        
+        .visitor-counter {
+            font-size: 1.1em;
+            margin-top: 40px;
+            padding: 15px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -57,10 +65,20 @@
         </div>
         
         <div class="timer-wrapper">
-            <a data-type="countdown" data-id="10544750" class="tickcounter" style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;" title="COUNTING MY DAYS …" href="//www.tickcounter.com/">COUNTING MY DAYS …</a>
+            <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script><a data-type="countdown" data-id="10544750" class="tickcounter" style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;" title="COUNTING MY DAYS …" href="//www.tickcounter.com/">COUNTING MY DAYS …</a>
+        </div>
+        
+        <div class="visitor-counter">
+            👥 Visitors: <span id="count">0</span>
         </div>
     </div>
     
-    <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script>
+    <script>
+        // Visitor Counter
+        let visitors = localStorage.getItem('visitors') || 0;
+        visitors = parseInt(visitors) + 1;
+        localStorage.setItem('visitors', visitors);
+        document.getElementById('count').textContent = visitors;
+    </script>
 </body>
 </html>
