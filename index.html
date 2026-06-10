@@ -234,7 +234,7 @@
             margin-top: 10px;
         }
         
-        .invite-unlock-section {
+        .admin-unlock-section {
             margin-top: 40px;
             padding: 20px;
             border: 1px solid #333;
@@ -245,7 +245,7 @@
             margin-right: auto;
         }
         
-        .invite-unlock-section h4 {
+        .admin-unlock-section h4 {
             font-size: 0.9em;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -253,7 +253,7 @@
             color: #aaa;
         }
         
-        .invite-unlock-input {
+        .admin-unlock-input {
             width: 100%;
             padding: 10px;
             font-size: 0.9em;
@@ -264,7 +264,7 @@
             margin-bottom: 8px;
         }
         
-        .invite-unlock-btn {
+        .admin-unlock-btn {
             width: 100%;
             padding: 8px;
             background: #222;
@@ -276,7 +276,7 @@
             transition: 0.3s;
         }
         
-        .invite-unlock-btn:hover {
+        .admin-unlock-btn:hover {
             background: #333;
             color: #fff;
         }
@@ -341,6 +341,7 @@
             padding: 15px;
             margin-bottom: 15px;
             border: 1px solid #333;
+            position: relative;
         }
         
         .comment-time {
@@ -357,6 +358,11 @@
             word-wrap: break-word;
         }
         
+        .comment-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
         .reply-btn {
             padding: 4px 10px;
             background: #222;
@@ -370,6 +376,25 @@
         .reply-btn:hover {
             background: #333;
             color: #fff;
+        }
+        
+        .delete-btn {
+            padding: 4px 10px;
+            background: #2a1a1a;
+            border: 1px solid #553333;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: 0.3s;
+            display: none;
+        }
+        
+        .delete-btn.show {
+            display: block;
+        }
+        
+        .delete-btn:hover {
+            background: #3a2a2a;
         }
         
         .reply-form {
@@ -446,6 +471,18 @@
             <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script><a data-type="countdown" data-id="10544750" class="tickcounter" style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;" title="COUNTING MY DAYS" href="//www.tickcounter.com/">COUNTING MY DAYS</a>
         </div>
         
+        <!-- Messages Section (Private Chat) -->
+        <div class="comments-section">
+            <h3>Message</h3>
+            
+            <div class="comment-form">
+                <textarea class="comment-textarea" id="newComment" placeholder="Type your message..."></textarea>
+                <button class="comment-submit" onclick="submitComment()">SEND</button>
+            </div>
+            
+            <div class="comments-list" id="commentsList"></div>
+        </div>
+        
         <!-- Email Opt-In Section -->
         <div class="email-section">
             <h4>💌 Get notifications (optional)</h4>
@@ -454,14 +491,14 @@
             <div class="email-status" id="emailStatus"></div>
         </div>
         
-        <!-- Invite Unlock Section -->
-        <div class="invite-unlock-section">
-            <h4>📨 Send Invite</h4>
-            <input type="password" id="invitePassword" class="invite-unlock-input" placeholder="Enter invite password">
-            <button class="invite-unlock-btn" onclick="unlockInviteSystem()">UNLOCK</button>
+        <!-- Admin Unlock Section (Hidden for visitor) -->
+        <div class="admin-unlock-section">
+            <h4>🔑 Admin Access</h4>
+            <input type="password" id="adminPassword" class="admin-unlock-input" placeholder="Enter admin password">
+            <button class="admin-unlock-btn" onclick="unlockAdminFeatures()">UNLOCK</button>
         </div>
         
-        <!-- Invite System (Hidden by default) -->
+        <!-- Invite System (Hidden by default, only for admin) -->
         <div class="invite-section" id="inviteSection">
             <h4>📨 Send Invite</h4>
             
@@ -482,31 +519,21 @@ Click the link below to access it:</textarea>
             <button class="invite-btn" onclick="sendInvite()">SEND INVITE</button>
             <div class="invite-status" id="inviteStatus"></div>
         </div>
-        
-        <!-- Comments Section (Private Chat) -->
-        <div class="comments-section">
-            <h3>Message</h3>
-            
-            <div class="comment-form">
-                <textarea class="comment-textarea" id="newComment" placeholder="Type your message..."></textarea>
-                <button class="comment-submit" onclick="submitComment()">SEND</button>
-            </div>
-            
-            <div class="comments-list" id="commentsList"></div>
-        </div>
     </div>
     
     <script>
-        // Main password
+        // Passwords
         const mainPassword = "Barba";
-        const invitePassword = "cheech1";
+        const adminPassword = "cheech1";
         const ownerEmail = "28rivals@gmail.com";
+        let isAdmin = false;
         
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            if (input === mainPassword) {
+            // Case-insensitive check for main password
+            if (input.toLowerCase() === mainPassword.toLowerCase()) {
                 document.getElementById('passwordScreen').style.display = 'none';
                 document.getElementById('mainContent').classList.add('unlocked');
                 loadVisitorEmail();
@@ -517,14 +544,34 @@ Click the link below to access it:</textarea>
             }
         }
         
-        function unlockInviteSystem() {
-            const input = document.getElementById('invitePassword').value;
+        function unlockAdminFeatures() {
+            const input = document.getElementById('adminPassword').value;
             
-            if (input === invitePassword) {
+            if (input === adminPassword) {
+                isAdmin = true;
                 document.getElementById('inviteSection').classList.add('show');
-                document.getElementById('invitePassword').value = '';
+                document.getElementById('adminPassword').value = '';
+                showDeleteButtons();
             } else {
                 alert('Incorrect password');
+            }
+        }
+        
+        function showDeleteButtons() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(btn => btn.classList.add('show'));
+        }
+        
+        function deleteComment(commentId) {
+            if (!confirm('Delete this message?')) return;
+            
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            const index = comments.findIndex(c => c.id === commentId);
+            
+            if (index > -1) {
+                comments.splice(index, 1);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                loadComments();
             }
         }
         
@@ -686,7 +733,10 @@ Click the link below to access it:</textarea>
                 <div class="comment">
                     <div class="comment-time">${formatTime(comment.timestamp)}</div>
                     <div class="comment-text">${escapeHtml(comment.text)}</div>
-                    <button class="reply-btn" onclick="toggleReplyForm(${comment.id})">Reply</button>
+                    <div class="comment-actions">
+                        <button class="reply-btn" onclick="toggleReplyForm(${comment.id})">Reply</button>
+                        <button class="delete-btn ${isAdmin ? 'show' : ''}" onclick="deleteComment(${comment.id})">Delete</button>
+                    </div>
                     
                     <div class="reply-form" id="replyForm-${comment.id}" style="display: none;">
                         <textarea class="reply-textarea" id="reply-${comment.id}" placeholder="Reply..."></textarea>
