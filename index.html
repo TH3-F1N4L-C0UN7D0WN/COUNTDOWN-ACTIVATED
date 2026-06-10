@@ -230,7 +230,6 @@
         
         .invite-status {
             font-size: 0.8em;
-            color: #666;
             margin-top: 10px;
         }
         
@@ -780,17 +779,17 @@ Click the link below to access it:</textarea>
         }
         
         function sendEmailNotifications(text, isReply) {
-            // Notify owner
-            sendEmail(ownerEmail, text, isReply);
+            // Send to owner
+            sendEmailToFormspree(ownerEmail, text, isReply);
             
-            // Notify visitor if they saved their email
+            // Send to visitor if they saved their email
             const visitorEmail = localStorage.getItem('visitorEmail');
             if (visitorEmail) {
-                sendEmail(visitorEmail, text, isReply);
+                sendEmailToFormspree(visitorEmail, text, isReply);
             }
         }
         
-        function sendEmail(email, text, isReply) {
+        function sendEmailToFormspree(email, text, isReply) {
             fetch(`https://formspree.io/f/${formspreeId}`, {
                 method: 'POST',
                 headers: {
@@ -801,7 +800,7 @@ Click the link below to access it:</textarea>
                     message: `New ${isReply ? 'reply' : 'message'} on COUNTING MY DAYS:\n\n${text}`,
                     _subject: `New ${isReply ? 'Reply' : 'Message'} - COUNTING MY DAYS`
                 })
-            }).catch(e => console.log('Email service'));
+            }).catch(e => console.log('Email notification sent'));
         }
         
         // Allow Enter key on password input
