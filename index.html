@@ -526,6 +526,7 @@ Click the link below to access it:</textarea>
         const mainPassword = "Barba";
         const adminPassword = "cheech1";
         const ownerEmail = "28rivals@gmail.com";
+        const formspreeId = "xbdekgky";
         let isAdmin = false;
         
         function checkPassword() {
@@ -603,7 +604,7 @@ Click the link below to access it:</textarea>
             const fullMessage = `${message}\n\n${pageUrl}`;
             
             // Send via Formspree
-            fetch('https://formspree.io/f/xyzpqrst', {
+            fetch(`https://formspree.io/f/${formspreeId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -790,7 +791,7 @@ Click the link below to access it:</textarea>
         }
         
         function sendEmail(email, text, isReply) {
-            fetch('https://formspree.io/f/xyzpqrst', {
+            fetch(`https://formspree.io/f/${formspreeId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
