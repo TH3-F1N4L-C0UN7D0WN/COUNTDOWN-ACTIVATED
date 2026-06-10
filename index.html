@@ -1,821 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="I still say this date in your old voice and rhythm lmao">
-    <meta property="og:title" content="COUNTING MY DAYS">
-    <meta property="og:description" content="I still say this date in your old voice and rhythm lmao">
-    <meta property="og:type" content="website">
-    <title>COUNTING MY DAYS - COUNTDOWN-ACTIVATED</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .password-screen {
-            text-align: center;
-            max-width: 400px;
-        }
-        
-        .password-screen h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .password-btn {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            background: #333;
-            border: 1px solid #555;
-            color: #fff;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        
-        .password-btn:hover {
-            background: #555;
-        }
-        
-        .error-msg {
-            color: #ff6b6b;
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-        
-        .container {
-            display: none;
-            text-align: center;
-            max-width: 800px;
-            width: 100%;
-        }
-        
-        .container.unlocked {
-            display: block;
-        }
-        
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .timer-wrapper {
-            margin: 40px 0;
-        }
-        
-        .message {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin: 30px 0;
-            color: #ccc;
-        }
-        
-        .email-section {
-            margin-top: 40px;
-            padding: 20px;
-            border: 1px solid #333;
-            background: #0a0a0a;
-            border-radius: 5px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .email-section h4 {
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            color: #aaa;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 10px;
-            font-size: 0.9em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        
-        .email-btn {
-            padding: 8px 16px;
-            background: #222;
-            border: 1px solid #444;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        
-        .email-btn:hover {
-            background: #333;
-            color: #fff;
-        }
-        
-        .email-status {
-            font-size: 0.8em;
-            color: #666;
-            margin-top: 8px;
-        }
-        
-        .invite-section {
-            margin-top: 40px;
-            padding: 20px;
-            border: 1px solid #333;
-            background: #0a0a0a;
-            border-radius: 5px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            display: none;
-        }
-        
-        .invite-section.show {
-            display: block;
-        }
-        
-        .invite-section h4 {
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            color: #aaa;
-        }
-        
-        .invite-form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        .invite-form-group label {
-            display: block;
-            font-size: 0.8em;
-            color: #888;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-        
-        .invite-email-input {
-            width: 100%;
-            padding: 10px;
-            font-size: 0.9em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        
-        .invite-message-textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 0.85em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            resize: vertical;
-            min-height: 120px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 10px;
-        }
-        
-        .invite-btn {
-            padding: 10px 20px;
-            background: #333;
-            border: 1px solid #555;
-            color: #fff;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.85em;
-            transition: 0.3s;
-        }
-        
-        .invite-btn:hover {
-            background: #555;
-        }
-        
-        .invite-status {
-            font-size: 0.8em;
-            margin-top: 10px;
-        }
-        
-        .admin-unlock-section {
-            margin-top: 40px;
-            padding: 20px;
-            border: 1px solid #333;
-            background: #0a0a0a;
-            border-radius: 5px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .admin-unlock-section h4 {
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            color: #aaa;
-        }
-        
-        .admin-unlock-input {
-            width: 100%;
-            padding: 10px;
-            font-size: 0.9em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        
-        .admin-unlock-btn {
-            width: 100%;
-            padding: 8px;
-            background: #222;
-            border: 1px solid #444;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        
-        .admin-unlock-btn:hover {
-            background: #333;
-            color: #fff;
-        }
-        
-        .comments-section {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .comments-section h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .comment-form {
-            margin-bottom: 30px;
-        }
-        
-        .comment-textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            background: #111;
-            border: 1px solid #333;
-            color: #fff;
-            resize: vertical;
-            min-height: 80px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 10px;
-        }
-        
-        .comment-submit {
-            padding: 10px 20px;
-            background: #333;
-            border: 1px solid #555;
-            color: #fff;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            transition: 0.3s;
-        }
-        
-        .comment-submit:hover {
-            background: #555;
-        }
-        
-        .comments-list {
-            max-height: 500px;
-            overflow-y: auto;
-        }
-        
-        .comment {
-            background: #111;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            position: relative;
-        }
-        
-        .comment-time {
-            font-size: 0.8em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .comment-text {
-            font-size: 1em;
-            line-height: 1.5;
-            color: #ddd;
-            margin-bottom: 10px;
-            word-wrap: break-word;
-        }
-        
-        .comment-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .reply-btn {
-            padding: 4px 10px;
-            background: #222;
-            border: 1px solid #444;
-            color: #aaa;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: 0.3s;
-        }
-        
-        .reply-btn:hover {
-            background: #333;
-            color: #fff;
-        }
-        
-        .delete-btn {
-            padding: 4px 10px;
-            background: #2a1a1a;
-            border: 1px solid #553333;
-            color: #ff6b6b;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: 0.3s;
-            display: none;
-        }
-        
-        .delete-btn.show {
-            display: block;
-        }
-        
-        .delete-btn:hover {
-            background: #3a2a2a;
-        }
-        
-        .reply-form {
-            margin-top: 10px;
-            padding-left: 15px;
-            border-left: 2px solid #333;
-        }
-        
-        .reply-textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 0.9em;
-            background: #0a0a0a;
-            border: 1px solid #333;
-            color: #fff;
-            resize: vertical;
-            min-height: 60px;
-            font-family: Arial, sans-serif;
-            margin-bottom: 8px;
-        }
-        
-        .reply-submit {
-            padding: 6px 12px;
-            background: #222;
-            border: 1px solid #444;
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.8em;
-        }
-        
-        .reply-submit:hover {
-            background: #333;
-        }
-        
-        .replies {
-            margin-top: 10px;
-            padding-left: 15px;
-            border-left: 2px solid #333;
-        }
-        
-        .reply {
-            background: #0a0a0a;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #222;
-            font-size: 0.9em;
-        }
-        
-        .reply-time {
-            font-size: 0.7em;
-            color: #555;
-            margin-bottom: 5px;
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="I still say this date in your old voice and rhythm lmao">
+ <meta property="og:title" content="COUNTING MY DAYS">
+ <meta property="og:description" content="I still say this date in your old voice and rhythm lmao">
+ <meta property="og:type" content="website">
+ <title>COUNTING MY DAYS - COUNTDOWN-ACTIVATED</title>
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+ body {
+ font-family: Arial, sans-serif;
+ background: #000;
+ color: #fff;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ padding: 20px;
+ }
+
+ .password-screen { text-align: center; max-width: 400px; }
+ .password-screen h2 { font-size: 2em; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+
+ .password-input, .email-input, .admin-unlock-input, .invite-email-input {
+ width: 100%;
+ padding: 10px;
+ background: #111;
+ border: 1px solid #333;
+ color: #fff;
+ margin-bottom: 10px;
+ }
+
+ .password-input { padding: 12px; font-size: 1em; text-align: center; }
+
+ button {
+ background: #333;
+ border: 1px solid #555;
+ color: #fff;
+ cursor: pointer;
+ text-transform: uppercase;
+ }
+
+ button:hover { background: #555; }
+
+ .password-btn { width: 100%; padding: 12px; font-size: 1em; }
+ .error-msg { color: #ff6b6b; margin-top: 10px; font-size: 0.9em; }
+
+ .container {
+ display: none;
+ text-align: center;
+ max-width: 800px;
+ width: 100%;
+ }
+
+ .container.unlocked { display: block; }
+
+ h1 {
+ font-size: 3em;
+ margin-bottom: 20px;
+ text-transform: uppercase;
+ letter-spacing: 2px;
+ }
+
+ .message {
+ font-size: 1.2em;
+ line-height: 1.6;
+ margin: 30px 0;
+ color: #ccc;
+ }
+
+ .timer-wrapper { margin: 40px 0; }
+
+ .visitor-counter {
+ text-align: center;
+ margin: 25px 0 40px 0;
+ color: #888;
+ font-size: 14px;
+ }
+
+ .visitor-counter img {
+ margin-top: 8px;
+ }
+
+ .email-section, .admin-unlock-section, .invite-section {
+ margin-top: 40px;
+ padding: 20px;
+ border: 1px solid #333;
+ background: #0a0a0a;
+ border-radius: 5px;
+ max-width: 500px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ .invite-section { max-width: 600px; display: none; }
+ .invite-section.show { display: block; }
+
+ .email-section h4, .admin-unlock-section h4, .invite-section h4 {
+ font-size: 0.9em;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ margin-bottom: 10px;
+ color: #aaa;
+ }
+
+ .email-btn, .admin-unlock-btn {
+ padding: 8px 16px;
+ background: #222;
+ border: 1px solid #444;
+ color: #aaa;
+ font-size: 0.8em;
+ }
+
+ .admin-unlock-btn { width: 100%; }
+
+ .email-status, .invite-status {
+ font-size: 0.8em;
+ color: #666;
+ margin-top: 8px;
+ }
+
+ .invite-form-group {
+ margin-bottom: 15px;
+ text-align: left;
+ }
+
+ .invite-form-group label {
+ display: block;
+ font-size: 0.8em;
+ color: #888;
+ margin-bottom: 5px;
+ text-transform: uppercase;
+ }
+
+ .invite-message-textarea, .comment-textarea, .reply-textarea {
+ width: 100%;
+ padding: 10px;
+ background: #111;
+ border: 1px solid #333;
+ color: #fff;
+ resize: vertical;
+ font-family: Arial, sans-serif;
+ margin-bottom: 10px;
+ }
+
+ .invite-message-textarea { min-height: 120px; font-size: 0.85em; }
+ .comment-textarea { min-height: 80px; font-size: 1em; padding: 12px; }
+ .reply-textarea { min-height: 60px; font-size: 0.9em; background: #0a0a0a; }
+
+ .invite-btn, .comment-submit {
+ padding: 10px 20px;
+ font-size: 0.85em;
+ }
+
+ .comments-section {
+ margin-top: 50px;
+ padding-top: 30px;
+ border-top: 1px solid #333;
+ text-align: left;
+ max-width: 600px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ .comments-section h3 {
+ text-align: center;
+ margin-bottom: 20px;
+ font-size: 1.5em;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ }
+
+ .comment-form { margin-bottom: 30px; }
+
+ .comments-list {
+ max-height: 500px;
+ overflow-y: auto;
+ }
+
+ .comment {
+ background: #111;
+ padding: 15px;
+ margin-bottom: 15px;
+ border: 1px solid #333;
+ position: relative;
+ }
+
+ .comment-time {
+ font-size: 0.8em;
+ color: #666;
+ margin-bottom: 8px;
+ }
+
+ .comment-text {
+ font-size: 1em;
+ line-height: 1.5;
+ color: #ddd;
+ margin-bottom: 10px;
+ word-wrap: break-word;
+ }
+
+ .comment-actions {
+ display: flex;
+ gap: 8px;
+ }
+
+ .reply-btn, .delete-btn, .reply-submit {
+ padding: 4px 10px;
+ background: #222;
+ border: 1px solid #444;
+ color: #aaa;
+ font-size: 0.8em;
+ }
+
+ .delete-btn {
+ background: #2a1a1a;
+ border: 1px solid #553333;
+ color: #ff6b6b;
+ display: none;
+ }
+
+ .delete-btn.show { display: block; }
+
+ .reply-form {
+ margin-top: 10px;
+ padding-left: 15px;
+ border-left: 2px solid #333;
+ }
+
+ .replies {
+ margin-top: 10px;
+ padding-left: 15px;
+ border-left: 2px solid #333;
+ }
+
+ .reply {
+ background: #0a0a0a;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: 1px solid #222;
+ font-size: 0.9em;
+ }
+
+ .reply-time {
+ font-size: 0.7em;
+ color: #555;
+ margin-bottom: 5px;
+ }
+ </style>
 </head>
+
 <body>
-    <!-- Password Screen -->
-    <div class="password-screen" id="passwordScreen">
-        <h2>COUNTDOWN-ACTIVATED</h2>
-        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
-        <button class="password-btn" onclick="checkPassword()">UNLOCK</button>
-        <div class="error-msg" id="errorMsg"></div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="container" id="mainContent">
-        <h1>COUNTDOWN-ACTIVATED</h1>
-        
-        <div class="message">
-            <p>Before the clock runs out, there some stuff you should hear. This is not about being friends or ever being an even a part of life again- that's gone. It's real shit.</p>
-        </div>
-        
-        <div class="timer-wrapper">
-            <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script><a data-type="countdown" data-id="10544750" class="tickcounter" style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;" title="COUNTING MY DAYS" href="//www.tickcounter.com/">COUNTING MY DAYS</a>
-        </div>
-        
-        <!-- Messages Section (Private Chat) -->
-        <div class="comments-section">
-            <h3>Message</h3>
-            
-            <div class="comment-form">
-                <textarea class="comment-textarea" id="newComment" placeholder="Type your message..."></textarea>
-                <button class="comment-submit" onclick="submitComment()">SEND</button>
-            </div>
-            
-            <div class="comments-list" id="commentsList"></div>
-        </div>
-        
-        <!-- Email Opt-In Section -->
-        <div class="email-section">
-            <h4>💌 Get notifications (optional)</h4>
-            <input type="email" id="visitorEmail" class="email-input" placeholder="Your email address">
-            <button class="email-btn" onclick="saveVisitorEmail()">SAVE</button>
-            <div class="email-status" id="emailStatus"></div>
-        </div>
-        
-        <!-- Admin Unlock Section (Hidden for visitor) -->
-        <div class="admin-unlock-section">
-            <h4>🔑 Admin Access</h4>
-            <input type="password" id="adminPassword" class="admin-unlock-input" placeholder="Enter admin password">
-            <button class="admin-unlock-btn" onclick="unlockAdminFeatures()">UNLOCK</button>
-        </div>
-        
-        <!-- Invite System (Hidden by default, only for admin) -->
-        <div class="invite-section" id="inviteSection">
-            <h4>📨 Send Invite</h4>
-            
-            <div class="invite-form-group">
-                <label>Email Address</label>
-                <input type="email" id="inviteEmail" class="invite-email-input" placeholder="recipient@email.com">
-            </div>
-            
-            <div class="invite-form-group">
-                <label>Message (customize if you want)</label>
-                <textarea id="inviteMessage" class="invite-message-textarea">Check out this countdown timer and let me know what you think.
+ <div class="password-screen" id="passwordScreen">
+ <h2>COUNTDOWN-ACTIVATED</h2>
+ <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+ <button class="password-btn" onclick="checkPassword()">UNLOCK</button>
+ <div class="error-msg" id="errorMsg"></div>
+ </div>
+
+ <div class="container" id="mainContent">
+ <h1>COUNTDOWN-ACTIVATED</h1>
+
+ <div class="message">
+ <p>Before the clock runs out, there some stuff you should hear. This is not about being friends or ever being an even a part of life again- that's gone. It's real shit.</p>
+ </div>
+
+ <div class="timer-wrapper">
+ <script>
+ (function(d, s, id) {
+ var js, pjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s);
+ js.id = id;
+ js.src = "//www.tickcounter.com/static/js/loader.js";
+ pjs.parentNode.insertBefore(js, pjs);
+ }(document, "script", "tickcounter-sdk"));
+ </script>
+
+ <a data-type="countdown"
+ data-id="10544750"
+ class="tickcounter"
+ style="display:block; left:0; width:100%; height:0; position:relative; padding-bottom:38%; margin:0 auto;"
+ title="COUNTING MY DAYS"
+ href="//www.tickcounter.com/">
+ COUNTING MY DAYS
+ </a>
+ </div>
+
+ <div class="visitor-counter">
+ Site Visits<br>
+ <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=countingmydays10544750" alt="Visitor Counter">
+ </div>
+
+ <div class="comments-section">
+ <h3>Message</h3>
+
+ <div class="comment-form">
+ <textarea class="comment-textarea" id="newComment" placeholder="Type your message..."></textarea>
+ <button class="comment-submit" onclick="submitComment()">SEND</button>
+ </div>
+
+ <div class="comments-list" id="commentsList"></div>
+ </div>
+
+ <div class="email-section">
+ <h4> Get notifications (optional)</h4>
+ <input type="email" id="visitorEmail" class="email-input" placeholder="Your email address">
+ <button class="email-btn" onclick="saveVisitorEmail()">SAVE</button>
+ <div class="email-status" id="emailStatus"></div>
+ </div>
+
+ <div class="admin-unlock-section">
+ <h4> Admin Access</h4>
+ <input type="password" id="adminPassword" class="admin-unlock-input" placeholder="Enter admin password">
+ <button class="admin-unlock-btn" onclick="unlockAdminFeatures()">UNLOCK</button>
+ </div>
+
+ <div class="invite-section" id="inviteSection">
+ <h4> Send Invite</h4>
+
+ <div class="invite-form-group">
+ <label>Email Address</label>
+ <input type="email" id="inviteEmail" class="invite-email-input" placeholder="recipient@email.com">
+ </div>
+
+ <div class="invite-form-group">
+ <label>Message</label>
+ <textarea id="inviteMessage" class="invite-message-textarea">Check out this countdown timer and let me know what you think.
 
 Password: Barba
 
 Click the link below to access it:</textarea>
-            </div>
-            
-            <button class="invite-btn" onclick="sendInvite()">SEND INVITE</button>
-            <div class="invite-status" id="inviteStatus"></div>
-        </div>
-    </div>
-    
-    <script>
-        // Passwords
-        const mainPassword = "Barba";
-        const adminPassword = "cheech1";
-        const ownerEmail = "28rivals@gmail.com";
-        const formspreeId = "xbdekgky";
-        let isAdmin = false;
-        
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            // Case-insensitive check for main password
-            if (input.toLowerCase() === mainPassword.toLowerCase()) {
-                document.getElementById('passwordScreen').style.display = 'none';
-                document.getElementById('mainContent').classList.add('unlocked');
-                loadVisitorEmail();
-                loadComments();
-                errorMsg.textContent = '';
-            } else {
-                errorMsg.textContent = 'Incorrect password';
-            }
-        }
-        
-        function unlockAdminFeatures() {
-            const input = document.getElementById('adminPassword').value;
-            
-            if (input === adminPassword) {
-                isAdmin = true;
-                document.getElementById('inviteSection').classList.add('show');
-                document.getElementById('adminPassword').value = '';
-                showDeleteButtons();
-            } else {
-                alert('Incorrect password');
-            }
-        }
-        
-        function showDeleteButtons() {
-            const deleteButtons = document.querySelectorAll('.delete-btn');
-            deleteButtons.forEach(btn => btn.classList.add('show'));
-        }
-        
-        function deleteComment(commentId) {
-            if (!confirm('Delete this message?')) return;
-            
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            const index = comments.findIndex(c => c.id === commentId);
-            
-            if (index > -1) {
-                comments.splice(index, 1);
-                localStorage.setItem('comments', JSON.stringify(comments));
-                loadComments();
-            }
-        }
-        
-        function sendInvite() {
-            const email = document.getElementById('inviteEmail').value.trim();
-            const message = document.getElementById('inviteMessage').value.trim();
-            const status = document.getElementById('inviteStatus');
-            
-            if (!email) {
-                status.textContent = 'Please enter an email';
-                status.style.color = '#ff6b6b';
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                status.textContent = 'Invalid email address';
-                status.style.color = '#ff6b6b';
-                return;
-            }
-            
-            if (!message) {
-                status.textContent = 'Please write a message';
-                status.style.color = '#ff6b6b';
-                return;
-            }
-            
-            // Get current page URL
-            const pageUrl = window.location.href;
-            const fullMessage = `${message}\n\n${pageUrl}`;
-            
-            // Send via Formspree
-            fetch(`https://formspree.io/f/${formspreeId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    message: fullMessage,
-                    _subject: 'You\'re invited to COUNTING MY DAYS'
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    status.textContent = '✓ Invite sent!';
-                    status.style.color = '#66bb6a';
-                    document.getElementById('inviteEmail').value = '';
-                    document.getElementById('inviteMessage').value = 'Check out this countdown timer and let me know what you think.\n\nPassword: Barba\n\nClick the link below to access it:';
-                } else {
-                    status.textContent = 'Error sending invite';
-                    status.style.color = '#ff6b6b';
-                }
-            })
-            .catch(e => {
-                status.textContent = 'Error sending invite';
-                status.style.color = '#ff6b6b';
-            });
-        }
-        
-        function saveVisitorEmail() {
-            const email = document.getElementById('visitorEmail').value.trim();
-            const status = document.getElementById('emailStatus');
-            
-            if (!email) {
-                status.textContent = 'Please enter an email';
-                status.style.color = '#ff6b6b';
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                status.textContent = 'Invalid email address';
-                status.style.color = '#ff6b6b';
-                return;
-            }
-            
-            localStorage.setItem('visitorEmail', email);
-            status.textContent = '✓ Email saved - you\'ll get notifications!';
-            status.style.color = '#66bb6a';
-        }
-        
-        function loadVisitorEmail() {
-            const saved = localStorage.getItem('visitorEmail');
-            if (saved) {
-                document.getElementById('visitorEmail').value = saved;
-                document.getElementById('emailStatus').textContent = '✓ Email notifications enabled';
-                document.getElementById('emailStatus').style.color = '#66bb6a';
-            }
-        }
-        
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-        
-        // Comments System (Chat)
-        function submitComment() {
-            const textarea = document.getElementById('newComment');
-            const text = textarea.value.trim();
-            
-            if (!text) {
-                alert('Please write something');
-                return;
-            }
-            
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            const newComment = {
-                id: Date.now(),
-                text: text,
-                timestamp: new Date().toISOString(),
-                replies: []
-            };
-            
-            comments.push(newComment);
-            localStorage.setItem('comments', JSON.stringify(comments));
-            
-            // Send email notifications
-            sendEmailNotifications(text, false);
-            
-            textarea.value = '';
-            loadComments();
-        }
-        
-        function submitReply(commentId) {
-            const textarea = document.getElementById('reply-' + commentId);
-            const text = textarea.value.trim();
-            
-            if (!text) {
-                alert('Please write something');
-                return;
-            }
-            
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            const comment = comments.find(c => c.id === commentId);
-            
-            if (comment) {
-                comment.replies.push({
-                    id: Date.now(),
-                    text: text,
-                    timestamp: new Date().toISOString()
-                });
-                localStorage.setItem('comments', JSON.stringify(comments));
-                
-                // Send email notifications
-                sendEmailNotifications(text, true);
-                
-                loadComments();
-            }
-        }
-        
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            const list = document.getElementById('commentsList');
-            
-            if (comments.length === 0) {
-                list.innerHTML = '<p style="text-align: center; color: #666; margin-top: 20px;">No messages yet...</p>';
-                return;
-            }
-            
-            list.innerHTML = comments.map(comment => `
-                <div class="comment">
-                    <div class="comment-time">${formatTime(comment.timestamp)}</div>
-                    <div class="comment-text">${escapeHtml(comment.text)}</div>
-                    <div class="comment-actions">
-                        <button class="reply-btn" onclick="toggleReplyForm(${comment.id})">Reply</button>
-                        <button class="delete-btn ${isAdmin ? 'show' : ''}" onclick="deleteComment(${comment.id})">Delete</button>
-                    </div>
-                    
-                    <div class="reply-form" id="replyForm-${comment.id}" style="display: none;">
-                        <textarea class="reply-textarea" id="reply-${comment.id}" placeholder="Reply..."></textarea>
-                        <button class="reply-submit" onclick="submitReply(${comment.id})">SEND</button>
-                    </div>
-                    
-                    ${comment.replies && comment.replies.length > 0 ? `
-                        <div class="replies">
-                            ${comment.replies.map(reply => `
-                                <div class="reply">
-                                    <div class="reply-time">${formatTime(reply.timestamp)}</div>
-                                    <div>${escapeHtml(reply.text)}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                </div>
-            `).join('');
-            
-            // Auto-scroll to bottom
-            list.scrollTop = list.scrollHeight;
-        }
-        
-        function toggleReplyForm(commentId) {
-            const form = document.getElementById('replyForm-' + commentId);
-            if (form) {
-                form.style.display = form.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-        
-        function formatTime(timestamp) {
-            const date = new Date(timestamp);
-            return date.toLocaleString();
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        function sendEmailNotifications(text, isReply) {
-            // Send to owner
-            sendEmailToFormspree(ownerEmail, text, isReply);
-            
-            // Send to visitor if they saved their email
-            const visitorEmail = localStorage.getItem('visitorEmail');
-            if (visitorEmail) {
-                sendEmailToFormspree(visitorEmail, text, isReply);
-            }
-        }
-        
-        function sendEmailToFormspree(email, text, isReply) {
-            fetch(`https://formspree.io/f/${formspreeId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    message: `New ${isReply ? 'reply' : 'message'} on COUNTING MY DAYS:\n\n${text}`,
-                    _subject: `New ${isReply ? 'Reply' : 'Message'} - COUNTING MY DAYS`
-                })
-            }).catch(e => console.log('Email notification sent'));
-        }
-        
-        // Allow Enter key on password input
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
-        
-        // Auto-refresh comments every 1 second
-        setInterval(() => {
-            if (document.getElementById('mainContent').classList.contains('unlocked')) {
-                loadComments();
-            }
-        }, 1000);
-    </script>
+ </div>
+
+ <button class="invite-btn" onclick="sendInvite()">SEND INVITE</button>
+ <div class="invite-status" id="inviteStatus"></div>
+ </div>
+ </div>
+
+ <script>
+ const mainPassword = "Barba";
+ const adminPassword = "cheech1";
+ const ownerEmail = "28rivals@gmail.com";
+ const formspreeId = "xbdekgky";
+ let isAdmin = false;
+
+ function checkPassword() {
+ const input = document.getElementById('passwordInput').value;
+ const errorMsg = document.getElementById('errorMsg');
+
+ if (input.toLowerCase() === mainPassword.toLowerCase()) {
+ document.getElementById('passwordScreen').style.display = 'none';
+ document.getElementById('mainContent').classList.add('unlocked');
+ loadVisitorEmail();
+ loadComments();
+ errorMsg.textContent = '';
+ } else {
+ errorMsg.textContent = 'Incorrect password';
+ }
+ }
+
+ function unlockAdminFeatures() {
+ const input = document.getElementById('adminPassword').value;
+
+ if (input === adminPassword) {
+ isAdmin = true;
+ document.getElementById('inviteSection').classList.add('show');
+ document.getElementById('adminPassword').value = '';
+ showDeleteButtons();
+ } else {
+ alert('Incorrect password');
+ }
+ }
+
+ function showDeleteButtons() {
+ document.querySelectorAll('.delete-btn').forEach(btn => btn.classList.add('show'));
+ }
+
+ function deleteComment(commentId) {
+ if (!confirm('Delete this message?')) return;
+
+ const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+ const index = comments.findIndex(c => c.id === commentId);
+
+ if (index > -1) {
+ comments.splice(index, 1);
+ localStorage.setItem('comments', JSON.stringify(comments));
+ loadComments();
+ }
+ }
+
+ function sendInvite() {
+ const email = document.getElementById('inviteEmail').value.trim();
+ const message = document.getElementById('inviteMessage').value.trim();
+ const status = document.getElementById('inviteStatus');
+
+ if (!email) {
+ status.textContent = 'Please enter an email';
+ status.style.color = '#ff6b6b';
+ return;
+ }
+
+ if (!isValidEmail(email)) {
+ status.textContent = 'Invalid email address';
+ status.style.color = '#ff6b6b';
+ return;
+ }
+
+ const pageUrl = window.location.href;
+ const fullMessage = `${message}\n\n${pageUrl}`;
+
+ fetch(`https://formspree.io/f/${formspreeId}`, {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ email: email,
+ message: fullMessage,
+ _subject: "You're invited to COUNTING MY DAYS"
+ })
+ })
+ .then(response => {
+ if (response.ok) {
+ status.textContent = '✓ Invite sent!';
+ status.style.color = '#66bb6a';
+ document.getElementById('inviteEmail').value = '';
+ } else {
+ status.textContent = 'Error sending invite';
+ status.style.color = '#ff6b6b';
+ }
+ })
+ .catch(() => {
+ status.textContent = 'Error sending invite';
+ status.style.color = '#ff6b6b';
+ });
+ }
+
+ function saveVisitorEmail() {
+ const email = document.getElementById('visitorEmail').value.trim();
+ const status = document.getElementById('emailStatus');
+
+ if (!email) {
+ status.textContent = 'Please enter an email';
+ status.style.color = '#ff6b6b';
+ return;
+ }
+
+ if (!isValidEmail(email)) {
+ status.textContent = 'Invalid email address';
+ status.style.color = '#ff6b6b';
+ return;
+ }
+
+ localStorage.setItem('visitorEmail', email);
+ status.textContent = "✓ Email saved - you'll get notifications!";
+ status.style.color = '#66bb6a';
+ }
+
+ function loadVisitorEmail() {
+ const saved = localStorage.getItem('visitorEmail');
+ if (saved) {
+ document.getElementById('visitorEmail').value = saved;
+ document.getElementById('emailStatus').textContent = '✓ Email notifications enabled';
+ document.getElementById('emailStatus').style.color = '#66bb6a';
+ }
+ }
+
+ function isValidEmail(email) {
+ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+ }
+
+ function submitComment() {
+ const textarea = document.getElementById('newComment');
+ const text = textarea.value.trim();
+
+ if (!text) {
+ alert('Please write something');
+ return;
+ }
+
+ const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+ const newComment = {
+ id: Date.now(),
+ text: text,
+ timestamp: new Date().toISOString(),
+ replies: []
+ };
+
+ comments.push(newComment);
+ localStorage.setItem('comments', JSON.stringify(comments));
+ sendEmailNotifications(text, false);
+
+ textarea.value = '';
+ loadComments();
+ }
+
+ function submitReply(commentId) {
+ const textarea = document.getElementById('reply-' + commentId);
+ const text = textarea.value.trim();
+
+ if (!text) {
+ alert('Please write something');
+ return;
+ }
+
+ const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+ const comment = comments.find(c => c.id === commentId);
+
+ if (comment) {
+ comment.replies.push({
+ id: Date.now(),
+ text: text,
+ timestamp: new Date().toISOString()
+ });
+
+ localStorage.setItem('comments', JSON.stringify(comments));
+ sendEmailNotifications(text, true);
+ loadComments();
+ }
+ }
+
+ function loadComments() {
+ const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+ const list = document.getElementById('commentsList');
+
+ if (comments.length === 0) {
+ list.innerHTML = '<p style="text-align: center; color: #666; margin-top: 20px;">No messages yet...</p>';
+ return;
+ }
+
+ list.innerHTML = comments.map(comment => `
+ <div class="comment">
+ <div class="comment-time">${formatTime(comment.timestamp)}</div>
+ <div class="comment-text">${escapeHtml(comment.text)}</div>
+
+ <div class="comment-actions">
+ <button class="reply-btn" onclick="toggleReplyForm(${comment.id})">Reply</button>
+ <button class="delete-btn ${isAdmin ? 'show' : ''}" onclick="deleteComment(${comment.id})">Delete</button>
+ </div>
+
+ <div class="reply-form" id="replyForm-${comment.id}" style="display: none;">
+ <textarea class="reply-textarea" id="reply-${comment.id}" placeholder="Reply..."></textarea>
+ <button class="reply-submit" onclick="submitReply(${comment.id})">SEND</button>
+ </div>
+
+ ${comment.replies && comment.replies.length > 0 ? `
+ <div class="replies">
+ ${comment.replies.map(reply => `
+ <div class="reply">
+ <div class="reply-time">${formatTime(reply.timestamp)}</div>
+ <div>${escapeHtml(reply.text)}</div>
+ </div>
+ `).join('')}
+ </div>
+ ` : ''}
+ </div>
+ `).join('');
+
+ list.scrollTop = list.scrollHeight;
+ }
+
+ function toggleReplyForm(commentId) {
+ const form = document.getElementById('replyForm-' + commentId);
+ if (form) {
+ form.style.display = form.style.display === 'none' ? 'block' : 'none';
+ }
+ }
+
+ function formatTime(timestamp) {
+ return new Date(timestamp).toLocaleString();
+ }
+
+ function escapeHtml(text) {
+ const div = document.createElement('div');
+ div.textContent = text;
+ return div.innerHTML;
+ }
+
+ function sendEmailNotifications(text, isReply) {
+ sendEmailToFormspree(ownerEmail, text, isReply);
+
+ const visitorEmail = localStorage.getItem('visitorEmail');
+ if (visitorEmail) {
+ sendEmailToFormspree(visitorEmail, text, isReply);
+ }
+ }
+
+ function sendEmailToFormspree(email, text, isReply) {
+ fetch(`https://formspree.io/f/${formspreeId}`, {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ email: email,
+ message: `New ${isReply ? 'reply' : 'message'} on COUNTING MY DAYS:\n\n${text}`,
+ _subject: `New ${isReply ? 'Reply' : 'Message'} - COUNTING MY DAYS`
+ })
+ }).catch(() => {});
+ }
+
+ document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+ if (e.key === 'Enter') {
+ checkPassword();
+ }
+ });
+
+ setInterval(() => {
+ if (document.getElementById('mainContent').classList.contains('unlocked')) {
+ loadComments();
+ }
+ }, 1000);
+ </script>
 </body>
 </html>
